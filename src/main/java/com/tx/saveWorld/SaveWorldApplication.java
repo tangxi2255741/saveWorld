@@ -1,7 +1,12 @@
 package com.tx.saveWorld;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.jackson.JsonComponent;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +21,7 @@ import java.util.List;
 @Controller
 @SpringBootApplication
 public class SaveWorldApplication {
+	private static final Logger LOGGER = LogManager.getLogger(SaveWorldApplication.class);
 
 	@RequestMapping("/")
 	public String index(Model model){
@@ -32,6 +38,7 @@ public class SaveWorldApplication {
 		model.addAttribute("singlePerson", single);
 		model.addAttribute("people", people);
 
+		LOGGER.info("person={}",people.toString());
 		return "index";
 	}
 
