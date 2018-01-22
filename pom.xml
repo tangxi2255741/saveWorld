@@ -29,7 +29,12 @@
 		<!--<dependency>-->
 			<!--<groupId>org.springframework.boot</groupId>-->
 			<!--<artifactId>spring-boot-starter-web</artifactId>-->
-
+			<!--<exclusions>-->
+				<!--<exclusion>-->
+					<!--<groupId>org.springframework.boot</groupId>-->
+					<!--<artifactId>spring-boot-starter-logging</artifactId>-->
+				<!--</exclusion>-->
+			<!--</exclusions>-->
 		<!--</dependency>-->
 
 		<!-- 页面模板引擎-->
@@ -43,6 +48,13 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!--启用不严格检查html-->
+		<dependency>
+			<groupId>net.sourceforge.nekohtml</groupId>
+			<artifactId>nekohtml</artifactId>
+			<version>1.9.22</version>
+		</dependency>
+
 		<!-- 引入velocity的依赖包.spring boot 1.5版本以上不支持,需自己带版本引入 -->
 		<!--<dependency>-->
 			<!--<groupId>org.springframework.boot</groupId>-->

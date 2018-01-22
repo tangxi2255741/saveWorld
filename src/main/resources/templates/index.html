@@ -1,54 +1,32 @@
-<html xmlns:th="http://www.thymeleaf.org"><!-- 需要动态处理的元素使用th:作为前缀-->
+<!DOCTYPE html>
+<html>
 <head>
-    <meta content="text/html;charset=UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <!-- @{} 引用web静态资源-->
-    <link th:href="@{bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
-    <link th:href="@{bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet"/>
+    <meta charset="utf-8"/>
+    <title>iview example</title>
+    <!--<link rel="stylesheet" type="text/css" href="../iview/iview.css"/>-->
+    <!--<script type="text/javascript" src="../iview/vue.js"></script>-->
+    <!--<script type="text/javascript" src="../iview/iview.js"></script>-->
+    <link rel="stylesheet" type="text/css" href="http://unpkg.com/iview/dist/styles/iview.css"/>
+    <script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script>
+    <script type="text/javascript" src="http://unpkg.com/iview/dist/iview.min.js"></script>
 </head>
 <body>
-
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title">访问model</h3>
-    </div>
-    <div class="panel-body">
-        <span th:text="${singlePerson.name}"></span>
-    </div>
+<div id="app">
+    <i-button @click="show">Click me!</i-button>
+    <Modal v-model="visible" title="Welcome">Welcome to iView</Modal>
 </div>
-
-<div th:if="${not #lists.isEmpty(people)}">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">列表</h3>
-        </div>
-        <div class="panel-body">
-            <ul class="list-group">
-                <!-- 使用 th:each="item:${items}" 进行迭代-->
-                <li class="list-group-item" th:each="person:${people}">
-                    <span th:text="${person.name}"></span>
-                    <span th:text="${person.age}"></span>
-                    <!-- 绑定事件-->
-                    <button class="btn" th:onclick="'getName(\'' + ${person.name} + '\');'">获得名字</button>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<script th:src="@{jquery-1.10.2.min.js}" type="text/javascript"></script><!-- 2 -->
-<script th:src="@{bootstrap/js/bootstrap.min.js}"></script><!-- 2 -->
-
-<!-- 可以在js中访问页面返回model对象值-->
-<script th:inline="javascript">
-    var single = [[${singlePerson}]];
-    console.log(single.name+"/"+single.age)
-
-    function getName(name){
-        console.log(name);
-    }
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            visible: false
+        },
+        methods: {
+            show: function () {
+                this.visible = true;
+            }
+        }
+    })
 </script>
-
 </body>
 </html>
