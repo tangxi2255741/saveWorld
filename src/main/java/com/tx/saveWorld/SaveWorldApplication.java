@@ -38,10 +38,15 @@ public class SaveWorldApplication {
 		model.addAttribute("singlePerson", single);
 		model.addAttribute("people", people);
 
-		LOGGER.info("person={}",people.toString());
+		LOGGER.info("person={}",p2.getName());
 		return "index";
 	}
 
+	@RequestMapping("/iview")
+	public String ivewTest(Model model){
+		LOGGER.info("ivewTest");
+		return "iview";
+	}
 	public static void main(String[] args) {
 		SpringApplication app = new SpringApplication(SaveWorldApplication.class);
 		app.run(args);
