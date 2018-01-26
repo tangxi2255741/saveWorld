@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <script src="https://vuejs.org/js/vue.min.js"></script>
+</head>
+<!--body不加,整个vue.js竟然无法使用-->
+    <body>
+        <ul id="v-for-object" class="demo">
+            <li v-for="(value,key,index) in person">
+                <p>序号:{{index}},属性名:{{key}},值:{{value}}</p>
+            </li>
+        </ul>
+
+        <div id="todo-list-example">
+            <input v-model="newTodoText" @keyup.enter="addNewTodo" placeholder="Add a todo"/>
+            <ul>
+                <!--is 动态组件-->
+                <li
+                    is="todo-item"
+                    v-for="(todo, index) in todos"
+                    :key="todo.id"
+                    :title="todo.title"
+                    @remove="todos.splice(index, 1)"
+                ></li>
+            </ul>
+        </div>
+
+        <script>
+            var app = new Vue({
+                el: '#v-for-object',
+                data: {
+                    person: {
+                        firstName: 'John',
+                        lastName: 'Doe',
+                        age: 30
+                    }
+                }
+            });
+            //给对象添加属性
+            Vue.set(app.person,"minName","tang");
+
+            Vue.component('todo-item', {
+                template: '\<li>\{{ title }}\<button v-on:click="$emit(\'remove\')">X</button>\</li>',
+                props: ['title']
+            });
+
+            new Vue({
+                el: '#todo-list-example',
+                data: {
+                    newTodoText: '',
+                    todos: [],
+                    nextTodoId: 0
+                },
+                methods: {
+                    addNewTodo: function () {
+                        this.todos.push({
+                            id: this.nextTodoId++,
+                            title: this.newTodoText
+                        })
+                        this.newTodoText = ''
+                    }
+                }
+            });
+
+        </script>
+    </body>
+</html>

@@ -47,6 +47,12 @@ public class SaveWorldApplication {
 		LOGGER.info("ivewTest");
 		return "iview";
 	}
+
+	@RequestMapping("/bootstrap")
+	public String bootstrapTest(Model model){
+		LOGGER.info("bootstrapTest");
+		return "bootstrap";
+	}
 	public static void main(String[] args) {
 		SpringApplication app = new SpringApplication(SaveWorldApplication.class);
 		app.run(args);

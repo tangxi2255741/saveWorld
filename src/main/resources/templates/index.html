@@ -1,58 +1,91 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8"/>
-    <title>iview example</title>
-    <link rel="stylesheet" type="text/css" href="/iview/iview.css"/>
-    <script type="text/javascript" src="/iview/vue.js"></script>
-    <script type="text/javascript" src="/iview/iview.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap 101 Template</title>
+    <!-- Bootstrap -->
+    <link href="https://v3.bootcss.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://v3.bootcss.com/assets/css/docs.min.css" rel="stylesheet">
 </head>
-<!--body不加,整个vue.js竟然无法使用-->
-    <body>
-        <div id="app">
-            <input v-model="message">
-            <span v-bind:title="tipMsg">{{ message }}</span>
-            <i-button @click="reverseMessage">逆转消息</i-button>
+<body>
+<div class="container-fluid show-grid">
+    <div class="row">
+        <div class="col-md-12">
+            <div th:replace="layout/head :: layout_head"></div>
         </div>
-        <div id="computed">
-            <p>全名:{{fullName}}</p>
-            <p>姓:{{firstName}}</p>
-            <p>名:{{lastName}}</p>
-            <input v-model="fullName"/>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div th:include="layout/nav :: layout_nav"></div>
         </div>
-        <script>
-            var app = new Vue({
-                el: '#app',
-                data: {
-                    message: 'Hello Vue.js!',
-                    tipMsg:'页面加载于 ' + new Date().toLocaleString()
-                },
-                methods: {
-                    reverseMessage: function () {
-                        this.message = this.message.split('').reverse().join('')
-                    }
-                }
-            });
-
-            var app2 = new Vue({
-                el:'#computed',
-                data:{
-                    firstName:'tang',
-                    lastName:'xi',
-                },
-                computed:{
-                    fullName:{
-                        get:function(){
-                            return this.firstName + " " + this.lastName;
-                        },
-                        set:function(fullName){
-                            var names = fullName.split(' ');
-                            this.firstName = names[0];
-                            this.lastName = names[names.length - 1];
-                        }
-                    }
-                }
-            });
-        </script>
-    </body>
+        <div class="col-md-8">.col-md-8</div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">.col-md-8</div>
+    </div>
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+</body>
 </html>
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+    <!--<meta charset="utf-8"/>-->
+    <!--<title>iview example</title>-->
+    <!--<link rel="stylesheet" type="text/css" href="/iview/iview.css"/>-->
+    <!--<script type="text/javascript" src="/iview/vue.js"></script>-->
+    <!--<script type="text/javascript" src="/iview/iview.js"></script>-->
+<!--</head>-->
+<!--&lt;!&ndash;body不加,整个vue.js竟然无法使用&ndash;&gt;-->
+    <!--<body>-->
+        <!--<div id="app">-->
+            <!--<p>全名:{{fullName}}</p>-->
+            <!--<p>姓:{{firstName}}</p>-->
+            <!--<p>名:{{lastName}}</p>-->
+            <!--<input v-model="fullName" placeholder="输入操作类型" :title="tipMsg"/>-->
+            <!--<i-button @click="reverseMessage">逆转消息</i-button>-->
+            <!--<template v-if="fullName == 'tang xi'">-->
+                <!--<p>输入正确</p>-->
+            <!--</template>-->
+            <!--<template v-else>-->
+                <!--<p>输入错误:{{fullName}}</p>-->
+            <!--</template>-->
+        <!--</div>-->
+        <!--<script>-->
+            <!--var app = new Vue({-->
+                <!--el: '#app',-->
+                <!--data: {-->
+                    <!--tipMsg:'当前时间为:' + new Date().toLocaleString(),-->
+                    <!--firstName:'tang',-->
+                    <!--lastName:'xi',-->
+                <!--},-->
+                <!--methods: {-->
+                    <!--reverseMessage: function () {-->
+                        <!--this.fullName = this.fullName.split('').reverse().join('')-->
+                    <!--}-->
+                <!--},-->
+                <!--computed:{-->
+                    <!--fullName:{-->
+                        <!--get:function(){-->
+                            <!--return this.firstName + " " + this.lastName;-->
+                        <!--},-->
+                        <!--set:function(fullName){-->
+                            <!--var names = fullName.split(' ');-->
+                            <!--this.firstName = names[0];-->
+                            <!--this.lastName = names[names.length - 1];-->
+                        <!--}-->
+                    <!--}-->
+                <!--}-->
+            <!--});-->
+        <!--</script>-->
+    <!--</body>-->
+<!--</html>-->
