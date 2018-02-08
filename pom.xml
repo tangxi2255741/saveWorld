@@ -25,6 +25,11 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.7</version>
+		</dependency>
 		<!-- 修改静态资源不用重启-->
 		<!--<dependency>-->
 			<!--<groupId>org.springframework.boot</groupId>-->
